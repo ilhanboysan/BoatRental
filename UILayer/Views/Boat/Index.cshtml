@@ -1,0 +1,128 @@
+﻿@model List<ResultBoatDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/DefaultLayout/_DefaultLayout.cshtml";
+}<style>
+     .fixed-img {
+         height: 250px;
+         object-fit: cover;
+         object-position: center;
+     }
+</style>
+<body>
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row" id="card-container">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 card-item">
+                        <div class="car-wrap rounded ">
+                            <!-- Carousel -->
+                            <div id="carousel-@item.Id" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner rounded">
+                                    @{
+                                        var first = true;
+                                        foreach (var image in item.Images)
+                                        {
+                                            <div class="carousel-item @(first ? "active" : "")">
+                                                <img class="d-block w-100 fixed-img" src="@image" alt="Tekne Görseli">
+                                            </div>
+                                            first = false;
+                                        }
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel-@item.Id" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-@item.Id" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </a>
+                            </div>
+
+                            <div class="text">
+                                <h2 class="mb-0"><a href="/Boat/Detail/@item.Id">@item.Name</a></h2>
+                                <div class="d-flex mb-3">
+                                    <span class="cat">@item.Location, @item.Category</span>
+                                    <p class="price ml-auto">@item.Price₺ <span>/Saatlik</span></p>
+                                </div>
+                                <p class="d-flex justify-content-end align-items-center mb-0">
+                                    <small class="text-muted mr-4">• @item.Size m • @item.MasterKabin kabin • @item.Capacity kişi</small>
+                                    <a href="/Boat/Detail/@item.Id" class="btn btn-secondary py-2">Detayları Gör</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul id="pagination"></ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+</body>
+<script>
+    const itemsPerPage = 6;
+    let currentPage = 1;
+
+    function showPage(page) {
+        const cards = document.querySelectorAll('.card-item');
+        const totalPages = Math.ceil(cards.length / itemsPerPage);
+
+        // Sayfa sınırlarını kontrol et
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+
+        currentPage = page;
+
+        cards.forEach((card, index) => {
+            card.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'block' : 'none';
+        });
+
+        updatePagination(totalPages);
+    }
+
+    function updatePagination(totalPages) {
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#">${i}</a>`;
+            if (i === currentPage) li.classList.add('active');
+            li.addEventListener('click', function (e) {
+                e.preventDefault();
+                showPage(i);
+            });
+            pagination.appendChild(li);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        showPage(currentPage);
+    });
+</script>
+
+<script>
+    //Navbar Sürekli awake moduna alma
+    document.addEventListener("DOMContentLoaded", function () {
+        var navbar = document.querySelector('.ftco_navbar');
+
+        if (navbar) {
+            navbar.classList.add('scrolled', 'awake');
+        }
+
+        // Scroll ile sınıfların değişmesini engelle
+        window.removeEventListener('scroll', window.onscroll);
+
+        // Eğer jQuery scroll kodu varsa onu da geçersiz kıl
+        if (typeof $ !== "undefined") {
+            $(window).off("scroll");
+        }
+    });
+</script>

@@ -1,0 +1,51 @@
+﻿@model List<ResultBlogPostDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/DefaultLayout/_DefaultLayout.cshtml";
+}
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+                <h1 class="text-center">Blog Yazılarımız</h1>
+                <p class="text-center">Deniz tutkunlarının ilham kaynağı: En son blog yazılarımızla yat charter dünyasını keşfedin. Unutulmaz deneyimler ve püf noktalarıyla dolu hikayeleri kaçırmayın!</p>
+            @foreach (var item in Model)
+                {
+                    <div class="col-md-12 text-center d-flex">
+                        <div class="blog-entry justify-content-end mb-md-5">
+                            <a href="/BlogPost/Detail/@item.Id" class="block-20 img" style="background-image: url('@item.Image');">
+                            </a>
+                            <div class="text px-md-5 pt-4">
+                                <div class="meta mb-3">
+                                    <div><a ><span class="fa-solid fa-calendar"></span> @item.Date.ToString("dd MMM yyyy")</a></div>
+                                    <div><a ><span class="fa-solid fa-at"></span> @item.Author</a></div>
+                                </div>
+                                <h3 class="heading mt-2"><a href="/BlogPost/Detail/@item.Id">@item.Title</a></h3>
+                                <p><a href="/BlogPost/Detail/@item.Id" class="btn btn-primary">Devaımını Oku <span class="fa-solid fa-arrow-right"></span></a></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+           
+        </div>
+    </div>
+</section>
+</body>
+<script>
+    //Navbar Sürekli awake moduna alma
+    document.addEventListener("DOMContentLoaded", function () {
+        var navbar = document.querySelector('.ftco_navbar');
+
+        if (navbar) {
+            navbar.classList.add('scrolled', 'awake');
+        }
+
+        // Scroll ile sınıfların değişmesini engelle
+        window.removeEventListener('scroll', window.onscroll);
+
+        // Eğer jQuery scroll kodu varsa onu da geçersiz kıl
+        if (typeof $ !== "undefined") {
+            $(window).off("scroll");
+        }
+    });
+</script>

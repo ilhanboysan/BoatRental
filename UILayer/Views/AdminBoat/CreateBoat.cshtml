@@ -1,0 +1,85 @@
+﻿@model CreateBoatDto
+@{
+	ViewData["Title"] = "CreateBoat";
+	Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Tekne İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Yeni Tekne Girişi</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="Name">Tekne Adı</label>
+								<input type="text" class="form-control" asp-for="Name" id="Name">
+							</div>
+							<div class="form-group">
+								<label for="Location">Konum</label>
+								<input type="text" class="form-control" asp-for="Location" id="Location">
+							</div>
+							<div class="form-group">
+								<label for="Category">Kategori</label>
+								<input type="text" class="form-control" asp-for="Category" id="Category">
+							</div>
+							<div class="form-group">
+								<label for="Size">Tekne Boyutu</label>
+								<input type="text" class="form-control" asp-for="Size" id="Size">
+							</div>
+							<div class="form-group">
+								<label for="Capacity">Kapasite</label>
+								<input type="text" class="form-control" asp-for="Capacity" id="Capacity">
+							</div>
+							<div class="form-group">
+								<label for="MasterKabin">Kabin Sayısı</label>
+								<input type="text" class="form-control" asp-for="MasterKabin" id="MasterKabin">
+							</div>
+							<div class="form-group">
+								<label for="WcBanyo">Wc/Banyo</label>
+								<input type="text" class="form-control" asp-for="WcBanyo" id="WcBanyo">
+							</div>
+							<div class="form-group">
+								<label for="Captain">Kaptan Sayısı</label>
+								<input type="text" class="form-control" asp-for="Captain" id="Captain">
+							</div>
+							<div class="form-group">
+								<label for="Chef">Aşçı Sayısı</label>
+								<input type="text" class="form-control" asp-for="Chef" id="Chef">
+							</div>
+							<div class="form-group">
+								<label for="Price">Fiyat</label>
+								<input type="text" class="form-control" asp-for="Price" id="Price">
+							</div>
+							<div class="form-group">
+								<label for="Equipment">Teknede Bulunan Ekipmanlar (Virgül "," İle Ayırın)</label>
+								<input type="text" class="form-control" name="EquipmentInput" id="EquipmentInput" value="@string.Join(",", Model.Equipment)">
+							</div>
+							<div class="form-group">
+								<label for="Equipment">Teknede Görselleri (Virgül "," İle Ayırın)</label>
+								<input type="text" class="form-control" name="ImagesInput" id="ImagesInput" value="@string.Join(",", Model.Images)">
+							</div>
+							<div class="form-group">
+								<label for="feature">Tekne Öne Çıkarılsın Mı ?</label>
+								<input type="checkbox" class="form-check-input" asp-for="feature" id="feature">
+							</div>
+						</div>
+						<div class="card-action">
+							<button class="btn btn-primary">Tekne Ekle</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+<br />

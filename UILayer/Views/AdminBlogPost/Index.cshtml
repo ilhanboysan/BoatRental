@@ -1,0 +1,58 @@
+﻿@model List<ResultBlogPostDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Blog Yazıları </h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Bilgiler</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							Blog Yazıları ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">Id</th>
+									<th scope="col">Başlık</th>
+									<th scope="col">Yazar</th>
+									<th scope="col">Tarih</th>
+								</tr>
+							</thead>
+
+							<tbody>
+
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.Id</td>
+										<td>@item.Title</td>
+										<td>@item.Author</td>
+										<td>@item.Date.ToString("dd MMM yyyy")</td>
+										<td><a href="/AdminBlogPost/DeleteBlogPost/@item.Id" class="btn btn-danger">Sil</a></td>
+										<td><a href="/AdminBlogPost/UpdateBlogPost/@item.Id" class="btn btn-primary">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/AdminBlogPost/CreateBlogPost/" class="btn btn-success">Yeni Blog Yazısı Ekle</a>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<br />

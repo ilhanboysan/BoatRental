@@ -1,0 +1,368 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/DefaultLayout/_DefaultLayout.cshtml";
+}
+<style>
+    .carousel-destinations .owl-nav {
+        position: absolute;
+        top:50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        pointer-events: none; /* buton dışı alanlar tıklanamaz olsun */
+    }
+
+        .carousel-destinations .owl-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            pointer-events: all; /* butonların kendisi tıklanabilir olsun */
+            transition: background 0.3s ease;
+        }
+
+            .carousel-destinations .owl-nav button:hover {
+                background: #e1e9ed;
+            }
+
+        /* Butonlara özel pozisyon */
+        .carousel-destinations .owl-nav .owl-prev {
+            margin-left: -20px;
+        }
+
+        .carousel-destinations .owl-nav .owl-next {
+            margin-right: -20px;
+        }
+
+    /* Carousel dış div relative olmalı ki nav içinde pozisyon sabitlenebilsin */
+    .carousel-destinations {
+        position: relative;
+    }
+
+
+</style>
+
+
+<body>
+
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url('/carbook-master/images/homepage.jpeg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+                <div class="col-lg-8 ftco-animate">
+                    <div class="text w-100 text-center mb-md-5 pb-md-5">
+                        <h1 class="mb-4">Tekne Kiralamanın <br /> En Kolay Yolu</h1>
+                        <p style="font-size: 18px;">Ege'nin eşsiz koylarını keşfetmeye hazır mısınız? Göcek ve Marmaris’te hayalinizdeki mavi yolculuk artık sadece birkaç adım uzağınızda.</p>
+                        <a href="~/carbook-master/images/gocek.mp4" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="ion-ios-play"></span>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12	featured-top">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <form action="#" class="request-form ftco-animate bg-primary">
+                                <h2>Ayrıcalıklı Yat Deneyimi</h2>
+                                <div class="form-group">
+                                    <label for="konum" class="label">Konum</label>
+                                    <select id="konum" name="konum" class="form-control">
+                                        <option  style="color: #000000;" >Göcek</option>
+                                        <option  style="color: #000000;">Marmaris</option>
+                                        <option  style="color: #000000;">Fethiye</option>
+                                        <option  style="color: #000000;">Bodrum</option>
+                                        <option  style="color: #000000;">Antalya</option>
+                                        <option  style="color: #000000;">Ayvalık</option>
+                                        <option  style="color: #000000;">İstanbul</option>
+                                        <option  style="color: #000000;">Kaş</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="form-group mr-2">
+                                        <label for="" class="label">Giriş Tarihi</label>
+                                        <input type="text" class="form-control" id="book_pick_date" placeholder="DD-MM-YYYY">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <label for="" class="label">Çıkış Tarihi</label>
+                                        <input type="text" class="form-control" id="book_off_date" placeholder="DD-MM-YYYY">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <a href="/Boat/Index" class="btn btn-secondary py-3 px-4">Tekneleri Gör</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8 d-flex align-items-center">
+                            <div class="services-wrap rounded-right w-100">
+                                <h3 class="heading-section mb-4"></h3>
+                                <div class="row d-flex mb-4">
+                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-location-dot" style="color: #00aaff;"></span></div>
+                                            <div class="text w-100">
+                                                <h3 class="heading mb-2">Tercih Ettiğiniz Konumda</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-handshake" style="color: #00aaff;"></span></div>
+                                            <div class="text w-100">
+                                                <h3 class="heading mb-2">En Uygun Anlaşma <br /> ile</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-ship" style="color: #00aaff;"></span></div>
+                                            <div class="text w-100">
+                                                <h3 class="heading mb-2">Teknenizi Ayırın</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 heading-section text-left ftco-animate mb-5">
+                    <h2 class="mb-2">Tekne Kiralamak İçin En İyi Destinasyonlar</h2>
+                    <p>Hayalinizdeki tatil için rotanızı seçin.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-destinations owl-carousel">
+
+                        <!-- Kart 1 -->
+                        @foreach (var item in Model.Locations)
+                        {
+                            <div class="item">
+                                <a href="/Location/Detail/@item.Id" style="display: block; height: 100%; text-decoration: none;">
+                                    <div class="destination-wrap text-white rounded" style="background-image: url('@item.Image'); background-size: cover; background-position: center; height: 300px; display: flex; align-items: flex-end; padding: 15px;">
+                                        <h5 style="color: #ffffff;">@item.Name</h5>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                       
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-about">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="border-radius:24px; background-image: url(/carbook-master/images/holiday.jpg);">
+                </div>
+                <div class="col-md-6 wrap-about ftco-animate">
+                    <div class="heading-section heading-section-white pl-md-5">
+                        <span class="subheading" style="color:#000000;">Hakkımızda</span>
+                        <h2 class="mb-4" >Teknende</h2>
+
+                        <p>Sıradan tatillerden sıkıldınız mı? Aynı mekanlar, aynı aktiviteler, her şey sıradan… Artık sıradanlığa veda edip, hayatınızın en özel ve unutulmaz deneyimine adım atma zamanı !</p>
+                        <p>Tekne seyahatlerimizde, size sadece bir tatil değil, özenle tasarlanmış bir yaşam tarzı sunuyoruz. VIP hizmetlerimizle ayrıcalıklı bir tatil deneyimi yaşamanız için her ayrıntı özenle planlandı. Lüks ve konforun birleştiği benzersiz konaklama seçeneklerimiz, dilediğiniz her an ulaşabileceğiniz özel transfer hizmetlerimiz, ve tamamen sizin ihtiyaçlarınıza göre şekillenen kişisel rehberlik hizmetimiz ile tatilinizi sadece bir yer değiştirme değil, bir yaşam deneyimine dönüştürün.</p>
+                        <p>Hayalinizdeki tatilin ötesine geçin. Göz alıcı manzaralar, zarif tasarımlar, ve özgün aktivitelerle dolu bir tatil sizi bekliyor. Kendinizi özel hissetmek, her anın tadını doyasıya çıkarmak ve unutulmaz anılar biriktirmek için doğru yerdesiniz. Sizin için her şey hazır, sadece keyfini çıkarın !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+                    <br />
+                    <span class="subheading"> Öne Çıkan Teknelerimiz</span>
+                    <h2 class="mb-2"></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-car owl-carousel">
+                        @foreach (var item in Model.Boats)
+                        {
+                            <div class="item">
+                                <div class="car-wrap rounded ftco-animate">
+                                    <div class="img rounded d-flex align-items-end" style="background-image: url(@item.Images.FirstOrDefault());">
+                                    </div>
+                                    <div class="text">
+                                        <h2 class="mb-0"><a href="#">@item.Name</a></h2>
+                                        <div class="d-flex mb-3">
+                                            <span class="cat">@item.Location,@item.Category</span>
+                                            <p class="price ml-auto">@item.Price₺ <span>/Saatlik</span></p>
+                                        </div>
+                                        <p class="d-flex justify-content-center mb-0">
+                                            <a href="/Boat/Detail/@item.Id" class="btn btn-secondary py-2">Detayları Gör</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <span class="subheading">Hizmetlerimiz</span>
+                    <h2 class="mb-3">Güncel Hizmetlerimiz</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-anchor"></span></div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Profesyonel Gemi Kaptanı</h3>
+                            <p>
+                                Güvenliğiniz ve konforunuz emin ellerde.
+                                Deneyimli kaptanlarımız, rotanızı en keyifli ve güvenli şekilde belirler. Siz sadece manzaranın tadını çıkarın.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-bowl-rice style="color: #00aaff;"></span></div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Aşçı Hizmeti</h3>
+                            <p>Yemekleriniz, teknede size özel hazırlanır. Taze deniz ürünlerinden dünya mutfağına kadar zengin menüler sizi bekliyor.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-sailboat"></span></div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Özel Tekne Turları</h3>
+                            <p>
+                                Keşfetmeye hazır mısınız?
+                                Gizli koylar, turkuaz sular ve unutulmaz rotalarla dolu özel tekne turlarımızla mavi yolculuğa çıkın.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa-solid fa-face-smile"></span></div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Müşteri Memnuniyeti</h3>
+                            <p>
+                                Siz mutlu olun diye her detayı düşündük.
+                                Konfor, güvenlik ve kaliteli hizmet anlayışımızla, misafirlerimizin memnuniyeti her zaman önceliğimizdir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-counter ftco-section img bg-light" id="section-counter">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text text-border d-flex align-items-center">
+                            <strong class="number" data-number="10">0</strong><span class="plus-sign">+</span>
+                            <span>Yıllık <br>Deneyim</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text text-border d-flex align-items-center">
+                            <strong class="number" data-number="100">0</strong><span class="plus-sign">+</span>
+                            <span>Tekne</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text text-border d-flex align-items-center">
+                            <strong class="number" data-number="1000">0</strong><span class="plus-sign">+</span>
+                            <span>Mutlu<br>Müşteri</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text d-flex align-items-center">
+                            <strong class="number" data-number="5">0</strong><span class="plus-sign">+</span>
+                            <span>Şube</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<!-- Sonra custom script -->
+<script>
+    $(document).ready(function () {
+        $('.carousel-destinations').owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 4 }
+            }
+        });
+    });
+</script>

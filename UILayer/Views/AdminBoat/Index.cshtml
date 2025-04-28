@@ -1,0 +1,56 @@
+﻿@model List<ResultBoatDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Tekne Bilgileri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Tekne Bilgileri</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							Tekneler ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">Id</th>
+									<th scope="col">Tekne Adı</th>
+									<th scope="col">Kategori</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.Id</td>
+										<td>@item.Name</td>
+										<td>@item.Category</td>
+										<td><a href="/AdminBoat/DeleteBoat/@item.Id" class="btn btn-danger">Sil</a></td>
+										<td><a href="/AdminBoat/UpdateBoat/@item.Id" class="btn btn-primary">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/AdminBoat/CreateBoat/" class="btn btn-success">Yeni Tekne Ekle</a>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<br />

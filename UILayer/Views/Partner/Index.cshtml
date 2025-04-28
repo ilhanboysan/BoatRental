@@ -1,0 +1,105 @@
+﻿@model List<ResultPartnerDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/DefaultLayout/_DefaultLayout.cshtml";  
+    var index = 1;
+}
+<style>
+   .partner-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.partner-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partner-section h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.partner-section .description {
+    color: #777;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 16px;
+}
+
+.partner-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 1 satırda 4 öğe */
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+}
+
+.partner-card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.partner-card img:hover {
+    transform: scale(1.05);
+}
+
+/* Mobil uyum için */
+@@media (max-width: 992px) {
+    .partner-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablet */
+    }
+}
+
+@@media (max-width: 600px) {
+    .partner-grid {
+        grid-template-columns: repeat(1, 1fr); /* Mobil */
+    }
+}
+
+</style>
+<body>
+    <br />
+    <br />
+    <section class="partner-section" id="partners">
+        <div class="container">
+            <h3>Partnerlerimiz</h3>
+            <p class="description">
+                Sektördeki önde gelen firmalarla iş birliği yaparak, size en iyi çözümleri sunuyoruz.
+                Müşteri memnuniyetini ön planda tutarak, iş ortaklarımızla birlikte her zaman daha iyisini hedefliyoruz.
+            </p>
+
+            <div class="partner-grid">
+                @foreach (var item in Model)
+                {
+                    <div class="partner-card">
+                        <a>
+                            <img src="@item.Image" alt="@item.Name" />
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    //Navbar Sürekli awake moduna alma
+    document.addEventListener("DOMContentLoaded", function () {
+        var navbar = document.querySelector('.ftco_navbar');
+
+        if (navbar) {
+            navbar.classList.add('scrolled', 'awake');
+        }
+
+        // Scroll ile sınıfların değişmesini engelle
+        window.removeEventListener('scroll', window.onscroll);
+
+        // Eğer jQuery scroll kodu varsa onu da geçersiz kıl
+        if (typeof $ !== "undefined") {
+            $(window).off("scroll");
+        }
+    });
+</script>
